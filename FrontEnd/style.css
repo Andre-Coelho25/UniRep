@@ -1,0 +1,56 @@
+body {
+  background-color: rgb(211, 211, 211);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#firstHeader{
+  width: 50%; 
+  height: 100px;
+  border: 1px solid rgb(211, 211, 211);
+  margin: auto;
+  background-color: rgb(196, 196, 196);
+  background-image: linear-gradient(90deg, rgb(211, 211, 211), #99bbc5, rgb(211, 211, 211));
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.intro{
+  border-color: black;
+  border-style: solid;
+  border-radius: 20px;
+  height: 350px;
+  margin: 10px;
+  float: none;
+  display: inline-block;
+  text-align: left; 
+  
+}
+
+.subTitulo{
+  font-size: x-large;
+  font-family: "Franklin Gothic Medium";
+  font-weight: 900;
+  color:#585858;
+  text-align: center;
+}
+
+.subtTituloBack{
+  background-color: rgb(232, 244, 255);
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #99bbc5;
+  color: #585858;
+  text-align: center;
+}
