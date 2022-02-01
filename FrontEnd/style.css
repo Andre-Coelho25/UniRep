@@ -1,56 +1,43 @@
-body {
-  background-color: rgb(211, 211, 211);
+body{
+  background-color: #2C3036;
 }
 
-* {
+.indexContainer{
+  background-color: #D84E4B;
+  margin-top: 10%; 
+  height: 500px;
+  border: #2C3036; 
+}
+
+#imgIndex{
+  height: 100%;
+}
+
+.labelIndex{
+  color: #FFFF;
+  margin-bottom: 1%;
+  margin-top: 4%;
+}
+
+.inputIndex{
+  height: 50px;
+  width: 70%;
+  border-radius: 25px;
+  border: 3px solid #2C3036;
   box-sizing: border-box;
-}
-
-#firstHeader{
-  width: 50%; 
-  height: 100px;
-  border: 1px solid rgb(211, 211, 211);
-  margin: auto;
-  background-color: rgb(196, 196, 196);
-  background-image: linear-gradient(90deg, rgb(211, 211, 211), #99bbc5, rgb(211, 211, 211));
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.intro{
-  border-color: black;
-  border-style: solid;
-  border-radius: 20px;
-  height: 350px;
-  margin: 10px;
-  float: none;
+  padding-left: 10px;
   display: inline-block;
-  text-align: left; 
-  
 }
 
-.subTitulo{
-  font-size: x-large;
-  font-family: "Franklin Gothic Medium";
-  font-weight: 900;
-  color:#585858;
-  text-align: center;
-}
-
-.subtTituloBack{
-  background-color: rgb(232, 244, 255);
-  padding: 10px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #99bbc5;
-  color: #585858;
-  text-align: center;
+.button{
+  margin-top: 10%;
+  width: 30%;
+  height: 15%;
+  background-color: #D84E4B;
+  border: 4px solid #2C3036;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 25px;
+  font-size: auto;
+  font-weight: bold;
+  color: #2C3036;
 }
