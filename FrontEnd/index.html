@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css"></head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+</head>
 
 <body>
     <div class="row">
@@ -13,15 +15,26 @@
             
         </div>
     <div class="indexContainer col-5" style="padding-top: 5%; width: 45%;">
-        <label class="labelIndex" for="emailIndex">Email</label>
-        <br>
-          <input type="Email" id="emailIndex" class="inputIndex" >
-          <br>
-          <label class="labelIndex" for="passIndex">Password</label>
-          <br>
-          <input type="Password" id="passIndex" class="inputIndex">
-          <br>
-          <button class="button">Login</button>
+        <div class="loginRow row">
+            <label class="labelIndex" for="emailIndex">Email</label>
+        </div>
+        
+       <div class="loginRow row">
+           <input type="Email" id="emailIndex" class="inputIndex" >
+       </div>
+          
+       <div class="loginRow row">
+            <label class="labelIndex" for="passIndex">Password</label>
+       </div>
+
+       <div class="loginRow row">
+           <input type="Password" id="passIndex" class="inputIndex">
+       </div>
+          
+       <div class="loginRow row">
+            <button class="button">Login</button>
+       </div>
+          
     </div>
     <div class="indexContainer col-5 d-none d-sm-block" style="width: 25%;">
         <img src="./src/mr_bean_cartoon_by_fachcruel_demjuj0-fullview.png" class="d-none d-sm-block" id="imgIndex" alt="">
