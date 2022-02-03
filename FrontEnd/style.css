@@ -31,24 +31,16 @@ body{
     transition: all 0.4s ease;;
 }
 
-:root{
-    --body-color: #E4E9F7;
-    --nav-color: #3d434b;
-    --side-nav: #3d434b;
-    --text-color: #FFF;
-}
-
 body{
     height: 100vh;
     background-color: var(--body-color);
 }
 
 body.dark{
-    --body-color: #272B2F;
-    --nav-color: #242526;
-    --side-nav: #242526;
-    --text-color: #CCC;
-    --search-bar: #242526;
+  --body-color: #272B2F;
+  --nav-color: #242526;
+  --side-nav: #242526;
+  --text-color: #CCC;
 }
 
 nav{
