@@ -6,15 +6,38 @@ body {
   }
 
 .perfilContainer{
-    margin-top: 5%;
+    margin-top: 2%;
 }
+
+#andreAss{
+  background: url("./imgs/andre.png") no-repeat;
+  background-size:contain;
+  background-position: center;
+  height: 5em;
+}
+
+#jorgeAss{
+  background: url("./imgs/jorge.png") no-repeat;
+  background-size:contain;
+  background-position: center;
+  height: 5em;
+}
+
+#pipaoAss{
+  background: url("./imgs/filipe.png") no-repeat;
+  background-size:contain;
+  background-position: center;
+  height: 5em;
+}
+
 
 #buttonPerfil{
     margin-top: 0.5%;
     margin-left: 75%;
     width: 24%;
-    height: 2em;
-    font-family: roboto;
+    height: 100%;
+    font-family:'Roboto';
+    font-size:100%;
 }
 
 #imgPerfil{
@@ -30,8 +53,27 @@ body {
 #changePhoto{
     color: #D2D2D7;
     font-size: large;
-    font-family: roboto;
+    font-family: 'Roboto';
+    font-weight: bold;
+    text-decoration: none;
     margin: auto;
+    margin-top: 3%;
+    margin-left: 3%;
+}
+
+#textoLindo{
+  font-family: 'Roboto';
+  font-size: x-large;
+  color: #D2D2D7;
+  margin: auto;
+  text-align: center;
+}
+
+#coisoLindo{
+  font-family: 'Roboto';
+  font-size: x-large;
+  color: #D2D2D7;
+  margin-left:10% ;
 }
 
 .inputPerfil{
@@ -42,7 +84,9 @@ body {
     width: 50%;
     height: 3.5em;
     margin-left: 10%;
-    font-family: roboto;
+    font-family:'Roboto';
+    font-size: large;
+    padding-left: 1%;
   }
 
 .labelPerfil{
@@ -52,5 +96,6 @@ body {
     margin-left: 10%;
     text-align: left;
     font-size: large;
-    font-family: roboto;
+    font-family: 'Roboto';
   }
+
