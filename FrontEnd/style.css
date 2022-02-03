@@ -1,4 +1,10 @@
+/*IMPORT DA FONTE DE LETRA ROBOTO*/
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+/*FIM DO IMPORT DA FONTE DE LETRA ROBOTO*/
+
+
 
 body{
   background-color: #2C3036;
@@ -24,9 +30,6 @@ body{
     font-family: roboto;
     transition: all 0.4s ease;;
 }
-
-
-/*CORES*/
 
 :root{
     --body-color: #E4E9F7;
@@ -304,4 +307,6 @@ body.dark .search-field i{
         margin-top: 20px;
     }
 }
+
+/*FIM DO CSS DA NAVBAR*/
 
