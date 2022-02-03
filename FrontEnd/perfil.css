@@ -1,0 +1,22 @@
+.perfilContainer{
+    margin-top: 5%;
+}
+
+.inputPerfil{
+    border-radius: 1.5em;
+    border: 0.15em solid #2C3036;
+    box-sizing: border-box;
+    background-color: #D2D2D7;
+    width: 65%;
+    height: 3.5em;
+    margin-left: 10%;
+  }
+
+.labelPerfil{
+  color: #FFFF;
+  margin-top: 4%;
+    margin-top: 2%;
+    margin-left: 10%;
+    text-align: left;
+    font-size: large;
+  }

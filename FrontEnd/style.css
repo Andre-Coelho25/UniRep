@@ -6,9 +6,6 @@ body{
 
 
 .button{
-  margin-top: 10%;
-  width: 30%;
-  height: 15%;
   border: 0.20em solid #2C3036;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   border-radius: 1.5em;
