@@ -1,5 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+
+body {
+    overflow: hidden; /* Hide scrollbars */
+  }
+
 .perfilContainer{
     margin-top: 5%;
+}
+
+#buttonPerfil{
+    margin-top: 0.5%;
+    margin-left: 75%;
+    width: 24%;
+    height: 2em;
+    font-family: roboto;
+}
+
+#imgPerfil{
+    height: 15em;
+    width: 15em;
+    position:relative;
+    background: url("./imgs/Filipe1-modified\ 2.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+#changePhoto{
+    color: #D2D2D7;
+    font-size: large;
+    font-family: roboto;
+    margin: auto;
 }
 
 .inputPerfil{
@@ -7,9 +39,10 @@
     border: 0.15em solid #2C3036;
     box-sizing: border-box;
     background-color: #D2D2D7;
-    width: 65%;
+    width: 50%;
     height: 3.5em;
     margin-left: 10%;
+    font-family: roboto;
   }
 
 .labelPerfil{
@@ -19,4 +52,5 @@
     margin-left: 10%;
     text-align: left;
     font-size: large;
+    font-family: roboto;
   }

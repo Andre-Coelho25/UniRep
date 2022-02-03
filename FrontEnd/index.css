@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+
 .indexContainer{
     background-color: #d84e4b;
     width: 50%;
@@ -10,6 +13,9 @@
 }
 
 #buttonIndex{
+  margin-top: 10%;
+  width: 30%;
+  height: 15%;
     margin-left: 10%;
     transition-duration: 0.4s;
 }
@@ -32,6 +38,8 @@
     width: 65%;
     height: 3.5em;
     margin-left: 10%;
+    font-family: roboto;
+    font-size: large;
   }
 
 .labelIndex{
@@ -42,6 +50,7 @@
     margin-left: 10%;
     text-align: left;
     font-size: large;
+    font-family: roboto;
   }
 
   #imgIndex{
