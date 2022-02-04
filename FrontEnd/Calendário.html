@@ -24,46 +24,41 @@
       href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
       rel="stylesheet"
     />
+
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
     <link rel="stylesheet" href="styleCalendário.css" type="text/css" />
   </head>
 
   <body>
-
     <!--HTML DA NAVBAR-->
 
-    <nav>
-      <div class="nav-bar">
-        <i class="bx bx-menu sidebarOpen"></i>
-        <span class="logo navLogo"><a href="#">UniRepository</a></span>
-
-        <div class="menu">
-          <div class="logo-toggle">
-            <span class="logo"><a href="#">MENU</a></span>
-            <i class="bx bx-x siderbarClose"></i>
-          </div>
-
-          <ul class="nav-links">
-            <li><a href="#">Calendário</a></li>
-            <li><a href="#">Repositório</a></li>
-            <li><a href="#">Fórum</a></li>
-          </ul>
-        </div>
-
-          <div class="searchBox">
-            <div class="searchToggle">
-              <i class="bx bx-x cancel"></i>
-            </div>
-
-            <div class="search-field">
-              <input type="text" placeholder="Search..." />
-              <i class="bx bx-search"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
     <!--FIM DO HTML DA NAVBAR-->
+    
+    <div id="page-wrapper">
+      <div id="title">Sidebar Interaction</div>
+    </div>
+
+    <div id="btn">
+      <div id="top"></div>
+      <div id="middle"></div>
+      <div id="bottom"></div>
+    </div>
+    <div id="box">
+      <div id = "menu">
+        <div class = "menubar">MENU</div>
+      </div>
+      <div id="items">
+        <div class="item">Calendário</div>
+        <div class="item">Repositório</div>
+        <div class="item">Fórum</div>
+      </div>
+    </div>
 
     <!--HTML DO CALENDÁRIO-->
 
@@ -95,53 +90,31 @@
 </html>
 
 <!--SCRIPT DA NAVBAR-->
-
 <script>
-  const body = document.querySelector("body"),
-    nav = document.querySelector("nav"),
-    modeToggle = document.querySelector(".dark-light"),
-    searchToggle = document.querySelector(".searchToggle"),
-    sidebarOpen = document.querySelector(".sidebarOpen"),
-    siderbarClose = document.querySelector(".siderbarClose");
+const sidebarBox = document.querySelector('#box'),
+		sidebarBtn = document.querySelector('#btn'),
+		pageWrapper = document.querySelector('#page-wrapper');
 
-  let getMode = localStorage.getItem("mode");
-  if (getMode && getMode === "dark-mode") {
-    body.classList.add("dark");
-  }
+sidebarBtn.addEventListener('click', event => {
+		sidebarBtn.classList.toggle('active');
+		sidebarBox.classList.toggle('active');
+});
 
-  // js code to toggle dark and light mode
-  modeToggle.addEventListener("click", () => {
-    modeToggle.classList.toggle("active");
-    body.classList.toggle("dark");
+pageWrapper.addEventListener('click', event => {
 
-    // js code to keep user selected mode even page refresh or file reopen
-    if (!body.classList.contains("dark")) {
-      localStorage.setItem("mode", "light-mode");
-    } else {
-      localStorage.setItem("mode", "dark-mode");
-    }
-  });
+		if (sidebarBox.classList.contains('active')) {
+				sidebarBtn.classList.remove('active');
+				sidebarBox.classList.remove('active');
+		}
+});
 
-  // js code to toggle search box
-  searchToggle.addEventListener("click", () => {
-    searchToggle.classList.toggle("active");
-  });
+window.addEventListener('keydown', event => {
 
-  //   js code to toggle sidebar
-  sidebarOpen.addEventListener("click", () => {
-    nav.classList.add("active");
-  });
-
-  body.addEventListener("click", (e) => {
-    let clickedElm = e.target;
-
-    if (
-      !clickedElm.classList.contains("sidebarOpen") &&
-      !clickedElm.classList.contains("menu")
-    ) {
-      nav.classList.remove("active");
-    }
-  });
+		if (sidebarBox.classList.contains('active') && event.keyCode === 27) {
+				sidebarBtn.classList.remove('active');
+				sidebarBox.classList.remove('active');
+		}
+});
 </script>
 
 <!--FIM DA SCRIPT DA NAVBAR-->
