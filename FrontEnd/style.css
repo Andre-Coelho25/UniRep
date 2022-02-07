@@ -23,11 +23,27 @@ body {
 .tituloCurso{
   font-size: 2.5em;
   font-weight: bold;
+  font-family: 'Roboto';
   color: #FFFFFF;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
+
+.thingsLabel{
+  color: #FFFFFF;
+  font-size: 1.5em;
+  font-family: 'Roboto';
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+a[href$='.pdf'] {    
+  line-height:2em; /* check your icon height */  
+  padding-left: 20px;
+  background: transparent url("./imgs/pdf.png") center left no-repeat;
+  background-size:contain;
+}  
 
 /*CSS DA NAVBAR*/
 
