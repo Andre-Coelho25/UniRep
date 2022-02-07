@@ -7,6 +7,7 @@
 body {
   background-color: #212529;
   user-select: none;
+  font-size: 16px;
 }
 
 .button {
@@ -24,10 +25,7 @@ body {
 * {
   box-sizing: border-box;
 }
-body {
-  background-color: #272B2F;
-  font-size: 16px;
-}
+
 #page-wrapper {
   position: absolute;
   top: 0;
