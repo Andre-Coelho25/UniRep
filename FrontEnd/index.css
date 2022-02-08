@@ -1,10 +1,155 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
+.body{
+  padding: 0;
+  margin: 0;
+  height:100vh;
+}
 
-.indexContainer{
+/*MOBILE*/
+
+@media screen and (max-width: 600px) {
+  .indexContainer{
+    background-color: #d84e4b;
+    width: 75%;
+    height: 80vh;
+    margin: auto;
+    margin-top: 5em;
+    border-radius: 2em;
+    border: solid 0.25em #2c3036;
+    box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+#buttonIndex{
+  margin-top: 10%;
+  width: 30%;
+  height: 15%;
+    margin-left: 10%;
+    transition-duration: 0.4s;
+}
+
+#buttonIndex2{
+  margin-top: 10%;
+  width: 30%;
+  height: 15%;
+    margin-left: 10%;
+    transition-duration: 0.4s;
+}
+
+#buttonIndex:hover{
+    background-color: #2c3036;
+    color: #D2D2D7;
+}
+
+#changeIndex{
+    color: #2c3036;
+    padding: 10%;
+}
+
+.inputRow{
+  height: 20%;
+}
+
+.inputIndex{
+    border-radius: 1.5em;
+    border: 0.15em solid #2C3036;
+    box-sizing: border-box;
+    background-color: #D2D2D7;
+    width: 75%;
+    height: 3.5em;
+    margin-left: 10%;
+    font-family: roboto;
+    font-size: large;
+  }
+
+.labelIndex{
+  color: #FFFF;
+  margin-bottom: 1%;
+  margin-top: 4%;
+    margin-top: 2%;
+    margin-left: 10%;
+    text-align: left;
+    font-size: large;
+    font-family: roboto;
+  }
+}
+
+/*TABLET*/
+
+@media screen and (min-width: 600px) {
+
+  .indexContainer{
+    background-color: #d84e4b;
+    width: 75%;
+    height: 80vh;
+    margin: auto;
+    margin-top: 5em;
+    border-radius: 2em;
+    border: solid 0.25em #2c3036;
+    box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+#buttonIndex{
+  margin-top: 10%;
+  width: 30%;
+  height: 15%;
+    margin-left: 17%;
+    transition-duration: 0.4s;
+}
+
+#buttonIndex2{
+  margin-top: 10%;
+  width: 30%;
+  height: 15%;
+    margin-left: 10%;
+    transition-duration: 0.4s;
+}
+
+#buttonIndex:hover{
+    background-color: #2c3036;
+    color: #D2D2D7;
+}
+
+#changeIndex{
+    color: #2c3036;
+    padding: 10%;
+    margin-left: 10%;
+}
+
+.inputRow{
+  margin-top: 3%;
+  height: 17%;
+}
+
+.inputIndex{
+    border-radius: 1.5em;
+    border: 0.15em solid #2C3036;
+    box-sizing: border-box;
+    background-color: #D2D2D7;
+    width: 65%;
+    height: 3.5em;
+    margin-left: 17%;
+    font-family: roboto;
+    font-size: large;
+  }
+
+.labelIndex{
+  color: #FFFF;
+    margin-left: 17%;
+    text-align: left;
+    font-size: large;
+    font-family: roboto;
+  }
+}
+
+/*PC*/
+
+@media screen and (min-width: 992px) {
+
+  .indexContainer{
     background-color: #d84e4b;
     width: 50%;
-    height: 500px;
+    height: 75vh;
     margin: auto;
     margin-top: 5em;
     border-radius: 2em;
@@ -30,6 +175,68 @@
     padding: 10%;
 }
 
+.inputRow{
+  height: 20%;
+}
+
+.inputIndex{
+    border-radius: 1.5em;
+    border: 0.15em solid #2C3036;
+    box-sizing: border-box;
+    background-color: #D2D2D7;
+    width: 65%;
+    height: 3.5em;
+    margin-left: 10%;
+    font-family: roboto;
+    font-size: large;
+  }
+
+.labelIndex{
+  color: #FFFF;
+  margin-bottom: 1%;
+  margin-top: 4%;
+    margin-top: 2%;
+    margin-left: 10%;
+    text-align: left;
+    font-size: large;
+    font-family: roboto;
+  }
+}
+
+/*
+.indexContainer{
+    background-color: #d84e4b;
+    width: 50%;
+    height: 75vh;
+    margin: auto;
+    margin-top: 5em;
+    border-radius: 2em;
+    border: solid 0.25em #2c3036;
+    box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+#buttonIndex{
+  margin-top: 10%;
+  width: 30%;
+  height: 15%;
+    margin-left: 10%;
+    transition-duration: 0.4s;
+}
+
+#buttonIndex:hover{
+    background-color: #2c3036;
+    color: #D2D2D7;
+}
+
+#changeIndex{
+    color: #2c3036;
+    padding: 10%;
+}
+
+.inputRow{
+  height: 20%;
+}
+
 .inputIndex{
     border-radius: 1.5em;
     border: 0.15em solid #2C3036;
@@ -53,6 +260,8 @@
     font-family: roboto;
   }
 
+*/
+
   #imgIndex{
     display: block;
     margin-top: 0%;
@@ -61,10 +270,10 @@
   }
 
   #div2{    
-    height: 90%;
+    height: 100%;
     position:relative;
     background:   url("./imgs/mr_bean_cartoon_by_fachcruel_demjuj0-fullview.png")no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
   }
 
