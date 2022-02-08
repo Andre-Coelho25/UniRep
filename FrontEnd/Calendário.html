@@ -74,12 +74,21 @@
     <!--FIM DO HTML DO CALENDÁRIO-->
 
     <div class="loader-wrapper">
-      <span class="loader"><span class="loader-inner"></span></span>
+      <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <span>Loading</span>
+    </div>
   </div>
 <script>
+   $("#btn").hide();
 $(window).on("load",function(){
-   console.log("merda");
      $(".loader-wrapper").fadeOut("slow");
+     $("#btn").show();
 });
 </script>
   </body>
