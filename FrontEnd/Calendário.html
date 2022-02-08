@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/FrontEnd/style.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="styleCalendário.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -71,8 +72,22 @@
     </div>
 
     <!--FIM DO HTML DO CALENDÁRIO-->
+
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+<script>
+$(window).on("load",function(){
+   console.log("merda");
+     $(".loader-wrapper").fadeOut("slow");
+});
+</script>
   </body>
 </html>
+
+<!--SCRIPT DA ANIMAÇAO-->
+
+
 
 <!--SCRIPT DA NAVBAR-->
 
