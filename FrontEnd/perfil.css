@@ -2,107 +2,349 @@
 
 
 body {
-    overflow: hidden; /* Hide scrollbars */
+   /* Hide scrollbars */
+   overflow-x: hidden;
   }
 
-.perfilContainer{
-    margin-top: 2%;
-    background-color: #2C3036;
-    width: 95%;
-    height:20em;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 2em;
-    box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
-}
-
-#andreAss{
-  background: url("./imgs/andre.png") no-repeat;
-  background-size:contain;
-  background-position: center;
-  height: 5em;
-}
-
-#jorgeAss{
-  background: url("./imgs/jorge.png") no-repeat;
-  background-size:contain;
-  background-position: center;
-  height: 5em;
-}
-
-#pipaoAss{
-  background: url("./imgs/filipe.png") no-repeat;
-  background-size:contain;
-  background-position: center;
-  height: 5em;
-}
-
-
-#buttonPerfil{
-    margin-top: 0.5%;
-    margin-left: 75%;
-    width: 24%;
-    height: 100%;
-    font-family:'Roboto';
-    font-size:100%;
-}
-
-#imgPerfil{
-    height: 15em;
-    width: 15em;
-    position:relative;
-    background: url("./imgs/Filipe1-modified\ 2.png") no-repeat;
-    background-size: cover;
+  @media screen and (max-width: 600px) {
+    .perfilContainer{
+      margin-top: 10%;
+      background-color: #2C3036;
+      width: 85%;
+      height:20em;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 2em;
+      box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  }
+  
+  #andreAss{
+    background: url("./imgs/andre.png") no-repeat;
+    background-size:contain;
     background-position: center;
-    border-radius: 50%;
-}
-
-#changePhoto{
-    color: #D2D2D7;
-    font-size: large;
+    height: 5em;
+  }
+  
+  #jorgeAss{
+    background: url("./imgs/jorge.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  #pipaoAss{
+    background: url("./imgs/filipe.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  
+  #buttonPerfil{
+      margin-top: 0.5%;
+      margin-left: 65%;
+      width: 30%;
+      height: 100%;
+      font-family:'Roboto';
+      font-size: 1em;
+  }
+  
+  #imgPerfil{
+    margin-top: 50%;
+      height: 5em;
+      width: 5em;
+      position:relative;
+      background: url("./imgs/Filipe1-modified\ 2.png") no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+  }
+  
+  #changePhoto{
+      color: #D2D2D7;
+      font-size: 1em;
+      font-family: 'Roboto';
+      font-weight: bold;
+      text-decoration: none;
+      margin: auto;
+      margin-top: 3%;
+      margin-left: 0%;
+  }
+  
+  #textoLindo{
     font-family: 'Roboto';
-    font-weight: bold;
-    text-decoration: none;
+    font-size: medium;
+    color: #D2D2D7;
     margin: auto;
-    margin-top: 3%;
-    margin-left: 3%;
-}
-
-#textoLindo{
-  font-family: 'Roboto';
-  font-size: x-large;
-  color: #D2D2D7;
-  margin: auto;
-  text-align: center;
-}
-
-#coisoLindo{
-  font-family: 'Roboto';
-  font-size: x-large;
-  color: #D2D2D7;
-  margin-left:10% ;
-}
-
-.inputPerfil{
-    border-radius: 1.5em;
-    border: 0.15em solid #2C3036;
-    box-sizing: border-box;
-    background-color: #D2D2D7;
-    width: 50%;
-    height: 3.5em;
-    margin-left: 10%;
-    font-family:'Roboto';
-    font-size: large;
-    padding-left: 1%;
+    text-align: center;
+  }
+  
+  #coisoLindo{
+    font-family: 'Roboto';
+    font-size: x-large;
+    color: #D2D2D7;
+    margin-left:10% ;
+  }
+  
+  .textHolder{
+    width: 95%;
+    margin-left: 2.5%;
   }
 
-.labelPerfil{
-  color: #FFFF;
-  margin-top: 4%;
-    margin-top: 2%;
-    margin-left: 10%;
-    text-align: left;
-    font-size: large;
+  .inputRow{
+    margin-top: 10%;
+    height: 30%;
+  }
+
+  .inputPerfil{
+      border-radius: 1.5em;
+      border: 0.15em solid #2C3036;
+      box-sizing: border-box;
+      background-color: #D2D2D7;
+      width: 75%;
+      height: 3.5em;
+      margin-left: 10%;
+      font-family:'Roboto';
+      font-size: large;
+      padding-left: 1%;
+    }
+  
+  .labelPerfil{
+    color: #FFFF;
+    margin-top: 4%;
+      margin-top: 2%;
+      margin-left: 10%;
+      text-align: left;
+      font-size: large;
+      font-family: 'Roboto';
+    }    
+  }
+
+
+  @media screen and (min-width: 600px) {
+    .perfilContainer{
+      margin-top: 2%;
+      background-color: #2C3036;
+      width: 85%;
+      height:50vh;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 2em;
+      box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  }
+  
+  #andreAss{
+    background: url("./imgs/andre.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  #jorgeAss{
+    background: url("./imgs/jorge.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  #pipaoAss{
+    background: url("./imgs/filipe.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  
+  #buttonPerfil{
+      margin-top: 0.5%;
+      margin-left: 75%;
+      width: 20%;
+      height: 100%;
+      font-family:'Roboto';
+      font-size:100%;
+  }
+  
+  #imgPerfil{
+    margin-top: 10%;
+      height: 10em;
+      width: 10em;
+      position:relative;
+      background: url("./imgs/Filipe1-modified\ 2.png") no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+  }
+  
+  #changePhoto{
+      color: #D2D2D7;
+      font-size: 1em;
+      font-family: 'Roboto';
+      font-weight: bold;
+      text-decoration: none;
+      margin: auto;
+      margin-top: 3%;
+      margin-left: 0%;
+  }
+  
+  #textoLindo{
     font-family: 'Roboto';
+    font-size: x-large;
+    color: #D2D2D7;
+    margin: auto;
+    text-align: center;
+  }
+  
+  #coisoLindo{
+    font-family: 'Roboto';
+    font-size: x-large;
+    color: #D2D2D7;
+    margin-left:10% ;
+  }
+  
+  .textHolder{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+
+  .inputRow{
+    margin-top: 0%;
+    height: 30%;
+  }
+
+  .inputPerfil{
+      border-radius: 1.5em;
+      border: 0.15em solid #2C3036;
+      box-sizing: border-box;
+      background-color: #D2D2D7;
+      width: 75%;
+      height: 3.5em;
+      margin-left: 10%;
+      font-family:'Roboto';
+      font-size: large;
+      padding-left: 1%;
+    }
+  
+  .labelPerfil{
+    color: #FFFF;
+    margin-top: 4%;
+      margin-top: 2%;
+      margin-left: 10%;
+      text-align: left;
+      font-size: large;
+      font-family: 'Roboto';
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .perfilContainer{
+      margin-top: 2%;
+      background-color: #2C3036;
+      width: 75%;
+      height:50%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 2em;
+      box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  }
+  
+  #andreAss{
+    background: url("./imgs/andre.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  #jorgeAss{
+    background: url("./imgs/jorge.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  #pipaoAss{
+    background: url("./imgs/filipe.png") no-repeat;
+    background-size:contain;
+    background-position: center;
+    height: 5em;
+  }
+  
+  
+  #buttonPerfil{
+      margin-top: 0.5%;
+      margin-left: 75%;
+      width: 20%;
+      height: 100%;
+      font-family:'Roboto';
+      font-size:100%;
+  }
+  
+  #imgPerfil{
+      height: 15em;
+      width: 15em;
+      position:relative;
+      background: url("./imgs/Filipe1-modified\ 2.png") no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+  }
+  
+  #changePhoto{
+      color: #D2D2D7;
+      font-size: large;
+      font-family: 'Roboto';
+      font-weight: bold;
+      text-decoration: none;
+      margin: auto;
+      margin-top: 3%;
+      margin-left: 3%;
+  }
+  
+  #textoLindo{
+    font-family: 'Roboto';
+    font-size: x-large;
+    color: #D2D2D7;
+    margin: auto;
+    text-align: center;
+  }
+  
+  #coisoLindo{
+    font-family: 'Roboto';
+    font-size: x-large;
+    color: #D2D2D7;
+    margin-left:10% ;
+  }
+
+  .textHolder{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  
+  .inputRow{
+    margin-top: 0;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    height: 30%;
+  }
+
+  .inputPerfil{
+      border-radius: 1.5em;
+      border: 0.15em solid #2C3036;
+      box-sizing: border-box;
+      background-color: #D2D2D7;
+      width: 75%;
+      height: 3.5em;
+      margin-left: 10%;
+      font-family:'Roboto';
+      font-size: large;
+      padding-left: 1%;
+    }
+  
+  .labelPerfil{
+    color: #FFFF;
+      margin-left: 10%;
+      text-align: left;
+      font-size: large;
+      font-family: 'Roboto';
+    }
   }
 
