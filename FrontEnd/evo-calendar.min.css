@@ -368,7 +368,7 @@ tr.calendar-body .calendar-day .day[disabled] {
 }
 .event-container > .event-info > p {
   margin: 0;
-  color: #5a5a5a;
+  color: #fff;
 }
 .event-container > .event-info > p.event-title {
   position: relative;
@@ -420,19 +420,19 @@ tr.calendar-body .calendar-day .day[disabled] {
 }
 .event-container > .event-icon > div[class^="event-bullet-"],
 .event-indicator > .type-bullet > div[class^="type-"] {
-  background-color: #8773c1;
+  background-color: #D84E4B;
 }
-.event-container > .event-icon > div.event-bullet-event,
-.event-indicator > .type-bullet > div.type-event {
-  background-color: #ff7575;
+.event-container > .event-icon > div.event-bullet-ferias,
+.event-indicator > .type-bullet > div.type-ferias {
+  background-color: #EB8872;
 }
-.event-container > .event-icon > div.event-bullet-holiday,
-.event-indicator > .type-bullet > div.type-holiday {
-  background-color: #ffc107;
+.event-container > .event-icon > div.event-bullet-teste,
+.event-indicator > .type-bullet > div.type-teste {
+  background-color: #D2D2D7;
 }
 .event-container > .event-icon > div.event-bullet-birthday,
 .event-indicator > .type-bullet > div.type-birthday {
-  background-color: #3ca8ff;
+  background-color: #ffd400;
 }
 button.icon-button {
   border: none;
