@@ -4,6 +4,7 @@
 body {
    /* Hide scrollbars */
    overflow-x: hidden;
+   behavior: smooth;
   }
 
   @media screen and (max-width: 600px) {
