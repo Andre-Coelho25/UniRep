@@ -21,14 +21,14 @@ func main() {
 	// Open up our database connection.
 	// I've set up a database on my local machine using phpmyadmin.
 	// The database is called testDb
-	db, err := sql.Open("mysql", "Z85D787U9Y:muEC8eUbmd@tcp(127.0.0.1:3306)/uniRep")
+	db, err := sql.Open("mysql", "Z85D787U9Y:muEC8eUbmd@tcp(remotemysql.com:3306)/Z85D787U9Y")
 
 	// if there is an error opening the connection, handle it
 	if err != nil {
 		panic(err.Error())
 	}
 
-	results, err := db.Query("SELECT FROM user")
+	results, err := db.Query("SELECT * FROM user")
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
@@ -36,7 +36,7 @@ func main() {
 	for results.Next() {
 		var tag User
 		// for each row, scan the result into our tag composite object
-		err = results.Scan(&tag.Id, &tag.Name)
+		err = results.Scan(&tag.Id, &tag.Name, &tag.email, &tag.password)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}
