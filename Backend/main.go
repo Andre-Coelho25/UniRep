@@ -39,6 +39,7 @@ func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/posts", getUser).Methods("GET")
+	router.HandleFunc("/user/{id}", getUserId).Methods("GET")
 
 	http.ListenAndServe(":8000", router)
 
@@ -71,6 +72,35 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 		// and then print out the tag's Name attribute
 		log.Printf(tag.Name)
 		tags = append(tags, tag)
+	}
+
+	json.NewEncoder(w).Encode(tags)
+}
+
+func getUserId(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+
+	var tags []User
+
+	results, err := db.Query("SELECT * FROM user WHERE id_user=?", params["id"])
+	if err != nil {
+		panic(err.Error()) // proper error handling instead of panic in your app
+	}
+
+	defer results.Close()
+
+	for results.Next() {
+		var tag User
+		// for each row, scan the result into our tag composite object
+		err := results.Scan(&tag.Id, &tag.Name, &tag.email, &tag.password)
+		if err != nil {
+			panic(err.Error()) // proper error handling instead of panic in your app
+		}
+		// and then print out the tag's Name attribute
+		tags = append(tags, tag)
+		log.Printf(tags[0].email)
+
 	}
 
 	json.NewEncoder(w).Encode(tags)
