@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -15,13 +16,13 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	_ "github.com/gorilla/mux"
+	"golang.org/x/crypto/bcrypt"
 )
 
-type Usera struct {
-	Id       int
-	Name     string
-	email    string
-	password string
+type User struct {
+	Name     string `json:"name", db:"name"`
+	email    string `json:"email", db:"email"`
+	password string `json:"password", db:"password"`
 }
 
 type Imgpath struct {
@@ -51,6 +52,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/user/name/{id}", changeName).Methods("PUT")
 	router.HandleFunc("/user/img", uploadImg)
+	router.HandleFunc("/user/register", Signup)
 	http.ListenAndServe(":8000", router)
 
 	// defer the close till after the main function has finished
@@ -87,6 +89,49 @@ func changeName(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, "Post with ID = %s was updated", params["id"])
+}
+
+func Signup(w http.ResponseWriter, r *http.Request) {
+	// Parse and decode the request body into a new `Credentials` instance
+	//(creds := &User{}
+	//(err := json.NewDecoder(r.Body).Decode(creds)
+	//(if err != nil {
+	//(	// If there is something wrong with the request body, return a 400 status
+	//(	w.WriteHeader(http.StatusBadRequest)
+	//(	return
+	//(}
+
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err.Error())
+	}
+	keyVal := make(map[string]string)
+	json.Unmarshal(body, &keyVal)
+	name := keyVal["name"]
+	email := keyVal["email"]
+	password := keyVal["password"]
+
+	// Salt and hash the password using the bcrypt algorithm
+	// The second argument is the cost of hashing, which we arbitrarily set as 8 (this value can be more or less, depending on the computing power you wish to utilize)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), 8)
+
+	// Next, insert the username, along with the hashed password into the database
+	log.Println(name)
+	log.Println(email)
+	log.Println(hashedPassword)
+	stmt, err := db.Prepare("INSERT INTO user (name, email, password) VALUES(?,?,?)")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	_, err = stmt.Exec(name, email, hashedPassword)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	fmt.Fprintf(w, "New post was created")
+
+	// We reach this point if the credentials we correctly stored in the database, and the default status of 200 is sent back
 }
 
 //////////////////////////////////////////////FUTURO TODODODODODODO////////////////////////////////////////
