@@ -53,6 +53,7 @@ func main() {
 	router.HandleFunc("/user/name/{id}", changeName).Methods("PUT")
 	router.HandleFunc("/user/img", uploadImg)
 	router.HandleFunc("/user/register", Signup)
+	router.HandleFunc("/user/login", Signin)
 	http.ListenAndServe(":8000", router)
 
 	// defer the close till after the main function has finished
@@ -92,46 +93,76 @@ func changeName(w http.ResponseWriter, r *http.Request) {
 }
 
 func Signup(w http.ResponseWriter, r *http.Request) {
-	// Parse and decode the request body into a new `Credentials` instance
-	//(creds := &User{}
-	//(err := json.NewDecoder(r.Body).Decode(creds)
-	//(if err != nil {
-	//(	// If there is something wrong with the request body, return a 400 status
-	//(	w.WriteHeader(http.StatusBadRequest)
-	//(	return
-	//(}
 
+	//RECEBE O JSON QUE VEM DA ROTA
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		panic(err.Error())
 	}
+
+	//COLOCA O JSON NUM MAP E ASSOCIA A VARIAVEIS
 	keyVal := make(map[string]string)
 	json.Unmarshal(body, &keyVal)
 	name := keyVal["name"]
 	email := keyVal["email"]
 	password := keyVal["password"]
 
-	// Salt and hash the password using the bcrypt algorithm
-	// The second argument is the cost of hashing, which we arbitrarily set as 8 (this value can be more or less, depending on the computing power you wish to utilize)
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), 8)
 
-	// Next, insert the username, along with the hashed password into the database
 	log.Println(name)
 	log.Println(email)
 	log.Println(hashedPassword)
+
+	//PREPARA A QUERY PARA O DB
 	stmt, err := db.Prepare("INSERT INTO user (name, email, password) VALUES(?,?,?)")
 	if err != nil {
 		panic(err.Error())
 	}
 
+	//EXECUTA A QUERY DO DB COM OS PARAMETROS SENDO AS VARIAVEIS ASSOCIADAS PREVIAMENTE
 	_, err = stmt.Exec(name, email, hashedPassword)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	fmt.Fprintf(w, "New post was created")
-
 	// We reach this point if the credentials we correctly stored in the database, and the default status of 200 is sent back
+}
+
+func Signin(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	//RECEBE O JSON QUE VEM DA ROTA
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	//COLOCA O JSON NUM MAP E ASSOCIA A VARIAVEIS
+	keyVal := make(map[string]string)
+	json.Unmarshal(body, &keyVal)
+	password := keyVal["password"]
+	email := keyVal["email"]
+
+	log.Println(email)
+
+	//PREPARA A QUERY PARA O DB
+	stmt := db.QueryRow("SELECT password FROM user WHERE email=?", email)
+	var passwordComp string
+	switch err := stmt.Scan(&passwordComp); err {
+	case sql.ErrNoRows:
+		fmt.Println("No rows were returned!")
+	case nil:
+		fmt.Println(passwordComp)
+	default:
+		panic(err)
+	}
+
+	if err = bcrypt.CompareHashAndPassword([]byte(passwordComp), []byte(password)); err != nil {
+		// If the two passwords don't match, return a 401 status
+		w.WriteHeader(http.StatusUnauthorized)
+	}
+
 }
 
 //////////////////////////////////////////////FUTURO TODODODODODODO////////////////////////////////////////
