@@ -16,8 +16,23 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	_ "github.com/gorilla/mux"
+
 	"golang.org/x/crypto/bcrypt"
+
+	gomail "gopkg.in/gomail.v2"
 )
+
+var htmlBody = `
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <title>Hello, World</title>
+</head>
+<body>
+   <p>Clique neste link1 para alterar a password: http://127.0.0.1:5500/FrontEnd/password.html</p>
+   <img src="https://atlas-content-cdn.pixelsquid.com/stock-images/stickman-k1m1Ja3-600.jpg" width="400px" height="365px">
+</body>
+`
 
 type User struct {
 	Name     string `json:"name", db:"name"`
@@ -54,6 +69,7 @@ func main() {
 	router.HandleFunc("/user/img", uploadImg)
 	router.HandleFunc("/user/register", Signup)
 	router.HandleFunc("/user/login", Signin)
+	router.HandleFunc("/user/recover", recover)
 	http.ListenAndServe(":8000", router)
 
 	// defer the close till after the main function has finished
@@ -163,6 +179,37 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnauthorized)
 	}
 
+}
+
+func recover(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "application/json")
+
+	//RECEBE O JSON QUE VEM DA ROTA
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	//COLOCA O JSON NUM MAP E ASSOCIA A VARIAVEIS
+	keyVal := make(map[string]string)
+	json.Unmarshal(body, &keyVal)
+	email := keyVal["email"]
+
+	msg := gomail.NewMessage()
+	msg.SetHeader("From", "Suporte.UniRepository@gmail.com")
+	msg.SetHeader("To", email)
+	msg.SetHeader("Subject", "Teste")
+	msg.Embed("filipeok.png")
+	//	msg.SetBody("text/html", "<b>Clique neste link para alterar a password: http://127.0.0.1:5500/FrontEnd/password.html</b> <img source="FrontEnd\imgs\filipeok.png">")
+	msg.SetBody("text/html", "<b>Clique neste link1 para alterar a password: http://127.0.0.1:5500/FrontEnd/password.html</b> <br><br><br> <img src='cid:filipeok.png' width='400px' height='365px'>")
+
+	n := gomail.NewPlainDialer("smtp.gmail.com", 587, "Suporte.UniRepository@gmail.com", "OFilipeEBonito")
+
+	// Send the email
+	if err := n.DialAndSend(msg); err != nil {
+		panic(err)
+	}
 }
 
 //////////////////////////////////////////////FUTURO TODODODODODODO////////////////////////////////////////
