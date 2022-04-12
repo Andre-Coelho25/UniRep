@@ -178,7 +178,6 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 		// If the two passwords don't match, return a 401 status
 		w.WriteHeader(http.StatusUnauthorized)
 	}
-
 }
 
 func recover(w http.ResponseWriter, r *http.Request) {
