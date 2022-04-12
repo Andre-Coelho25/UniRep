@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -12,77 +13,83 @@ import (
 	_ "github.com/gorilla/mux"
 )
 
-var dbj *sql.DB
+var db *sql.DB
 var errj error
 
 func main() {
-	// Open up our database connection.
-	// I've set up a database on my local machine using phpmyadmin.
-	// The database is called testDb
-	dbj, errj = sql.Open("mysql", "Z85D787U9Y:muEC8eUbmd@tcp(remotemysql.com:3306)/Z85D787U9Y")
+	db, errj = sql.Open("mysql", "Z85D787U9Y:muEC8eUbmd@tcp(remotemysql.com:3306)/Z85D787U9Y")
 
-	// if there is an error opening the connection, handle it
 	if errj != nil {
 		panic(errj.Error())
 	}
 
-	defer dbj.Close()
+	defer db.Close()
 
 	router := mux.NewRouter()
-	//router.HandleFunc("/posts", getUser).Methods("GET")
-	//router.HandleFunc("/user/{id}", getUserId).Methods("GET")
-
+	router.HandleFunc("/calendario/event", addEvent).Methods("POST")
 	http.ListenAndServe(":8000", router)
-
-	// defer the close till after the main function has finished
-	// executing
-
-	/*eventoID, err := adicionaEvento(Evento{
-		Date:        time.Now(),
-		Description: "Coisa Linda Zé Carlos",
-		Name:        "Dia da Depressão",
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("Id do album: %v\n", eventoID)*/
 }
 
-/*type Evento struct {
-	Date        time.Time
-	Description string
-	Id_data     int64
-	Id_uc_cal   int64
-	Name        string
-}*/
+func addEvent(w http.ResponseWriter, r *http.Request) {
 
-/*func adicionaEvento(evento Evento) (int64, error) {
-	result, err := dbj.Exec("INSERT INTO calendario (date, description, name) VALUES (?, ?, ?)", evento.Date, evento.Description, evento.Name)
-	if err != nil {
-		return 0, fmt.Errorf("addEvento: %v", err)
-	}
-	id, err := result.LastInsertId()
-	if err != nil {
-		return 0, fmt.Errorf("adicionaEvento: %v", err)
-	}
-	return id, nil
-}*/
-
-func adicionaEvento(w http.ResponseWriter, r *http.Request) {
-	stmt, err := dbj.Prepare("INSERT INTO calendario(date, description, name) VALUES (?, ?, ?)")
-	if err != nil {
-		panic(err.Error())
-	}
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		panic(err.Error())
 	}
 	keyVal := make(map[string]string)
 	json.Unmarshal(body, &keyVal)
-	title := keyVal["evento"]
-	_, err = stmt.Exec(title)
+	id_uc := keyVal["id_uc"]
+	date := keyVal["date"]
+	name := keyVal["name"]
+	description := keyVal["description"]
+
+	log.Println(id_uc)
+	log.Println(date)
+	log.Println(name)
+	log.Println(description)
+	stmt, err := db.Prepare("INSERT INTO calendario (id_uc, date, name, description) VALUES(?,?,?,?)")
 	if err != nil {
 		panic(err.Error())
 	}
+
+	_, err = stmt.Exec(id_uc, date, name, description)
+	if err != nil {
+		panic(err.Error())
+	}
+
 	fmt.Fprintf(w, "New post was created")
+}
+
+func getEvent(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	//RECEBE O JSON QUE VEM DA ROTA
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	//COLOCA O JSON NUM MAP E ASSOCIA A VARIAVEIS
+	keyVal := make(map[string]string)
+	json.Unmarshal(body, &keyVal)
+	date := keyVal["date"]
+	description := keyVal["description"]
+	name := keyVal["name"]
+	id_uc := keyVal["id_uc"]
+
+	//EXECUTA A QUERY PARA O DB
+	stmt := db.Query("SELECT * FROM calendario WHERE date=?", date)
+	var dateComp date
+	var descriptionComp string
+	var nameComp string
+	var id_ucComp int
+
+	switch err := stmt.Scan(&dateComp); err {
+	case sql.ErrNoRows:
+		fmt.Println("No rows were returned!")
+	case nil:
+		fmt.Println(dateComp)
+	default:
+		panic(err)
+	}
 }
