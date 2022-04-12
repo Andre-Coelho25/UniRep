@@ -22,18 +22,6 @@ import (
 	gomail "gopkg.in/gomail.v2"
 )
 
-var htmlBody = `
-<html>
-<head>
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   <title>Hello, World</title>
-</head>
-<body>
-   <p>Clique neste link1 para alterar a password: http://127.0.0.1:5500/FrontEnd/password.html</p>
-   <img src="https://atlas-content-cdn.pixelsquid.com/stock-images/stickman-k1m1Ja3-600.jpg" width="400px" height="365px">
-</body>
-`
-
 type User struct {
 	Name     string `json:"name", db:"name"`
 	email    string `json:"email", db:"email"`
