@@ -223,9 +223,9 @@ func ImagemPost(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("MIME Header: %+v\n", handler.Header)
 	//escrever temporariamente o file no nosso server
 	if extension == "png" || extension == "jpeg" || extension == "jpg" || extension == "PNG" || extension == "JPEG" || extension == "JPG" {
-		os.Remove("temp/upload1052450194.jpg")
+		os.Remove("../../Frontend/temp/upload1052450194.jpg")
 		done := fmt.Sprintf("upload*.%s", extension)
-		tempFile, err := ioutil.TempFile("temp", done)
+		tempFile, err := ioutil.TempFile("../../Frontend/temp", done)
 		println(tempFile.Name())
 		if err != nil {
 			fmt.Println(err)
