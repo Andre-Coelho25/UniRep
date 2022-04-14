@@ -13,6 +13,14 @@ import (
 	_ "github.com/gorilla/mux"
 )
 
+//É sempre com letra maiúscula a iniciar no JSon
+//P.S: Não sei porquê
+type Event struct {
+	Date        string `json:"date"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+
 var db *sql.DB
 var errj error
 
@@ -27,6 +35,8 @@ func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/calendario/event", addEvent).Methods("POST")
+	router.HandleFunc("/calendario/eventbydate/{date}", getEventByDate).Methods("GET")
+
 	http.ListenAndServe(":8000", router)
 }
 
@@ -60,36 +70,29 @@ func addEvent(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "New post was created")
 }
 
-func getEvent(w http.ResponseWriter, r *http.Request) {
+func getEventByDate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
 
-	//RECEBE O JSON QUE VEM DA ROTA
-	body, err := ioutil.ReadAll(r.Body)
+	//EXECUTA A QUERY PARA O DB
+	rows, err := db.Query("SELECT date, description, name FROM calendario WHERE date=?", params["date"])
 	if err != nil {
 		panic(err.Error())
 	}
+	defer rows.Close()
 
-	//COLOCA O JSON NUM MAP E ASSOCIA A VARIAVEIS
-	keyVal := make(map[string]string)
-	json.Unmarshal(body, &keyVal)
-	date := keyVal["date"]
-	description := keyVal["description"]
-	name := keyVal["name"]
-	id_uc := keyVal["id_uc"]
+	var events []Event
 
-	//EXECUTA A QUERY PARA O DB
-	stmt := db.Query("SELECT * FROM calendario WHERE date=?", date)
-	var dateComp date
-	var descriptionComp string
-	var nameComp string
-	var id_ucComp int
-
-	switch err := stmt.Scan(&dateComp); err {
-	case sql.ErrNoRows:
-		fmt.Println("No rows were returned!")
-	case nil:
-		fmt.Println(dateComp)
-	default:
-		panic(err)
+	for rows.Next() {
+		var event Event
+		err := rows.Scan(&event.Date, &event.Description, &event.Name)
+		if err != nil {
+			panic(err.Error())
+		}
+		events = append(events, event)
+		log.Printf(events[0].Date)
+		log.Printf(events[0].Description)
+		log.Printf(events[0].Name)
 	}
+	json.NewEncoder(w).Encode(events)
 }
