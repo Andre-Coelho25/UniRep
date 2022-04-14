@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
@@ -58,6 +59,7 @@ func main() {
 	router.HandleFunc("/user/register", Signup)
 	router.HandleFunc("/user/login", Signin)
 	router.HandleFunc("/user/recover", recover)
+	router.HandleFunc("/user/postimage", ImagemPost)
 	http.ListenAndServe(":8000", router)
 
 	// defer the close till after the main function has finished
@@ -186,16 +188,63 @@ func recover(w http.ResponseWriter, r *http.Request) {
 	msg := gomail.NewMessage()
 	msg.SetHeader("From", "Suporte.UniRepository@gmail.com")
 	msg.SetHeader("To", email)
-	msg.SetHeader("Subject", "Teste")
+	msg.SetHeader("Subject", "Recuperação da Password")
 	msg.Embed("filipeok.png")
 	//	msg.SetBody("text/html", "<b>Clique neste link para alterar a password: http://127.0.0.1:5500/FrontEnd/password.html</b> <img source="FrontEnd\imgs\filipeok.png">")
-	msg.SetBody("text/html", "<b>Clique neste link1 para alterar a password: http://127.0.0.1:5500/FrontEnd/password.html</b> <br><br><br> <img src='cid:filipeok.png' width='400px' height='365px'>")
+	msg.SetBody("text/html", "<b>Clique neste link1 para alterar a password: http://127.0.0.1:5500/FrontEnd/password.html</b> <br> <p font-size='5'>Este e-mail é gerado automaticamente. Não responder a este e-mail.</p> <br><br> <img src='cid:filipeok.png' width='400px' height='365px'>")
 
 	n := gomail.NewPlainDialer("smtp.gmail.com", 587, "Suporte.UniRepository@gmail.com", "OFilipeEBonito")
 
 	// Send the email
 	if err := n.DialAndSend(msg); err != nil {
 		panic(err)
+	}
+}
+
+func ImagemPost(w http.ResponseWriter, r *http.Request) {
+	//parse input from a form data  multipart/form-data
+	//colocar entre 10mb a 20 mb o limite
+	r.ParseMultipartForm(10 << 20)
+	//sacar o file
+	file, handler, err := r.FormFile("file")
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Println(err)
+		fmt.Println(err)
+	}
+	defer file.Close()
+	// Get substring after a string.
+	pos := strings.LastIndex(handler.Filename, ".")
+	adjustedPos := pos + len(".")
+	extension := handler.Filename[adjustedPos:len(handler.Filename)]
+	println(extension)
+	fmt.Printf("UPLOADING FILE: %+v\n", handler.Filename)
+	fmt.Printf("File Size: %+v\n", handler.Size)
+	fmt.Printf("MIME Header: %+v\n", handler.Header)
+	//escrever temporariamente o file no nosso server
+	if extension == "png" || extension == "jpeg" || extension == "jpg" || extension == "PNG" || extension == "JPEG" || extension == "JPG" {
+		os.Remove("temp/upload1052450194.jpg")
+		done := fmt.Sprintf("upload*.%s", extension)
+		tempFile, err := ioutil.TempFile("temp", done)
+		println(tempFile.Name())
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		defer tempFile.Close()
+		fileBytes, err := ioutil.ReadAll(file)
+		if err != nil {
+			fmt.Println(err)
+		}
+		println(fileBytes)
+		tempFile.Write(fileBytes)
+
+		//retornar com sucesso ou nao
+		fmt.Fprintf(w, "Sucess\n")
+	} else {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, "Formats error")
+
 	}
 }
 
