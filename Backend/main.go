@@ -13,10 +13,10 @@ import (
 )
 
 type User struct {
-	Id       int
-	Name     string
-	email    string
-	password string
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 var db *sql.DB
@@ -38,7 +38,6 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/posts", getUser).Methods("GET")
 	router.HandleFunc("/user/{id}", getUserId).Methods("GET")
-
 	http.ListenAndServe(":8000", router)
 
 	// defer the close till after the main function has finished
@@ -63,7 +62,7 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 	for results.Next() {
 		var tag User
 		// for each row, scan the result into our tag composite object
-		err := results.Scan(&tag.Id, &tag.Name, &tag.email, &tag.password)
+		err := results.Scan(&tag.ID, &tag.Name, &tag.Email, &tag.Password)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}
@@ -73,6 +72,7 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(tags)
+
 }
 
 func getUserId(w http.ResponseWriter, r *http.Request) {
@@ -91,13 +91,13 @@ func getUserId(w http.ResponseWriter, r *http.Request) {
 	for results.Next() {
 		var tag User
 		// for each row, scan the result into our tag composite object
-		err := results.Scan(&tag.Id, &tag.Name, &tag.email, &tag.password)
+		err := results.Scan(&tag.ID, &tag.Name, &tag.Email, &tag.Password)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}
 		// and then print out the tag's Name attribute
 		tags = append(tags, tag)
-		log.Printf(tags[0].email)
+		log.Printf(tags[0].Email)
 
 	}
 
