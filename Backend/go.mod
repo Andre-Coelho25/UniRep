@@ -17,6 +17,6 @@ require (
 require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/xhit/go-simple-mail/v2 v2.11.0
-	golang.org/x/crypto v0.0.0-20220315160706-3147a52a75dd
+	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 )

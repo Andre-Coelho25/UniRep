@@ -25,8 +25,8 @@ import (
 
 type User struct {
 	Name     string `json:"name", db:"name"`
-	email    string `json:"email", db:"email"`
-	password string `json:"password", db:"password"`
+	Email    string `json:"email", db:"email"`
+	Password string `json:"password", db:"password"`
 }
 
 type Imgpath struct {
